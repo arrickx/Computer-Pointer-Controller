@@ -1,9 +1,29 @@
 # Computer Pointer Controller
 
-*TODO:* Write a short introduction to your project
+This project is an application that controls the computer pointer to follow human eye gaze direction. This project is build with OpenVINO toolkit and 4 pretrain models, which are [Face Detection Model](https://docs.openvinotoolkit.org/latest/_models_intel_face_detection_adas_binary_0001_description_face_detection_adas_binary_0001.html), [Facial Landmarks Detection Model](https://docs.openvinotoolkit.org/latest/_models_intel_landmarks_regression_retail_0009_description_landmarks_regression_retail_0009.html), [Head Pose Estimation Model](https://docs.openvinotoolkit.org/latest/_models_intel_head_pose_estimation_adas_0001_description_head_pose_estimation_adas_0001.html), and [Gaze Estimation Model](https://docs.openvinotoolkit.org/latest/_models_intel_gaze_estimation_adas_0002_description_gaze_estimation_adas_0002.html).
 
 ## Project Set Up and Installation
-*TODO:* Explain the setup procedures to run your project. For instance, this can include your project directory structure, the models you need to download and where to place them etc. Also include details about how to install the dependencies your project requires.
+1. Install [Intel OpenVINO toolkit](https://docs.openvinotoolkit.org/latest/index.html) 
+2. Install 4 pretrained models for this project.
+	1. Open Terminal in your device
+	2. Initialize the openVINO environment
+	```
+	source /opt/intel/openvino/bin/setupvars.sh
+	```
+	3. Install 4 pretrained models by running these code
+	```
+	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "face-detection-adas-binary-0001"
+
+	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "landmarks-regression-retail-0009"
+
+	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "head-pose-estimation-adas-0001"
+
+	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "gaze-estimation-adas-0002"
+	```
+3. Install requirements package for this project
+	1. Open Terminal in your device
+	2. cd into the project folder you downloaded 
+	3. run this following code in the terminal ```sudo pip3 install -r requirements.txt```
 
 ## Demo
 *TODO:* Explain how to run a basic demo of your model.
