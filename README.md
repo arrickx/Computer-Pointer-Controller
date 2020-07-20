@@ -6,24 +6,28 @@ This project is an application that controls the computer pointer to follow huma
 1. Install [Intel OpenVINO toolkit](https://docs.openvinotoolkit.org/latest/index.html) 
 2. Install 4 pretrained models for this project.
 	1. Open Terminal in your device
-	2. Initialize the openVINO environment
-	```
-	source /opt/intel/openvino/bin/setupvars.sh
-	```
-	3. Install 4 pretrained models by running these code
-	```
-	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "face-detection-adas-binary-0001"
-
-	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "landmarks-regression-retail-0009"
-
-	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "head-pose-estimation-adas-0001"
-
-	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "gaze-estimation-adas-0002"
-	```
-3. Install requirements package for this project
-	1. Open Terminal in your device
 	2. cd into the project folder you downloaded 
-	3. run this following code in the terminal ```sudo pip3 install -r requirements.txt```
+	3. Initialize the openVINO environment
+    	```
+    	source /opt/intel/openvino/bin/setupvars.sh
+    	```
+	4. Install 4 pretrained models by running these code
+    	```
+    	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "face-detection-adas-binary-0001"
+        ```
+        ```
+    	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "landmarks-regression-retail-0009"
+        ```
+        ```
+    	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "head-pose-estimation-adas-0001"
+        ```
+        ```
+    	sudo python3 /opt/intel/openvino/deployment_tools/tools/model_downloader/downloader.py --name "gaze-estimation-adas-0002"
+    	```
+	5. Install requirements package for this project
+    	```
+    	sudo pip3 install -r requirements.txt
+    	```
 
 ## Demo
 *TODO:* Explain how to run a basic demo of your model.
