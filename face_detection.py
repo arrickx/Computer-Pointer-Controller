@@ -42,7 +42,7 @@ class Model_Face_Detection:
         supported_layers = self.plugin.query_network(network = self.network, device_name = self.device)
         unsupported_layers = [l for l in self.network.layers.keys() if l not in supported_layers]
         if len(unsupported_layers) != 0 and self.device == 'CPU':
-            print("unsupported layers found:{}".format(unsupported_layers))
+            print("Unsupported layers found:{}".format(unsupported_layers))
             if not self.extensions == None:
                 print("Adding cpu_extension")
                 self.plugin.add_extension(self.extensions, self.device) 
@@ -86,19 +86,19 @@ class Model_Face_Detection:
         pass
 
     def preprocess_input(self, image):
-    '''
-    Before feeding the data into the model for inference,
-    you might have to preprocess it. This function is where you can do that.
-    '''
+        '''
+        Before feeding the data into the model for inference,
+        you might have to preprocess it. This function is where you can do that.
+        '''
         image_resized = cv2.resize(image, (self.input_shape[3], self.input_shape[2]))
         img_processed = np.transpose(np.expand_dims(image_resized, axis = 0), (0, 3, 1, 2))
         return img_processed
 
     def preprocess_output(self, outputs, prob_threshold):
-    '''
-    Before feeding the output of this model to the next model,
-    you might have to preprocess the output. This function is where you can do that.
-    '''
+        '''
+        Before feeding the output of this model to the next model,
+        you might have to preprocess the output. This function is where you can do that.
+        '''
         coords = []
         outputs = outputs[self.output_name][0][0]
         for output in outputs:
