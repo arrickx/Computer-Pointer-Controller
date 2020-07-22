@@ -131,7 +131,7 @@ optional arguments:
 
 ## Benchmarks
 Project ran on my MacBook Pro 2015 with below hardware
-[![Image](img/1.PNG)](Image)
+[![Image](img/1.png)](Image)
 
 The results are below
 * FP32:
