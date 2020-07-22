@@ -2,6 +2,7 @@
 This is a sample class for a model. You may choose to use it as-is or make any changes to it.
 This has been provided just to give you an idea of how to structure your model class.
 '''
+
 import cv2
 import numpy as np
 from openvino.inference_engine import IECore
@@ -11,9 +12,6 @@ class Model_Head_Pose_Estimation:
     Class for the Head Pose Estimation Model.
     '''
     def __init__(self, model_name, device='CPU', extensions=None):
-        '''
-        TODO: Use this to set your instance variables.
-        '''
         self.model_name = model_name
         self.device = device
         self.extensions = extensions
@@ -29,23 +27,23 @@ class Model_Head_Pose_Estimation:
 
     def load_model(self):
         '''
-        TODO: You will need to complete this method.
+        TODO: You will need to complete this method
         This method is for loading the model to the device specified by the user.
         If your model requires any Plugins, this is where you can load them.
         '''
-        
+
         # Initialize the plugin
         self.plugin = IECore()
         self.network = self.plugin.read_network(model=self.model_structure, weights=self.model_weights)
 
         # Check for supported layers
-        supported_layers = self.plugin.query_network(network=self.network, device_name=self.device)
+        supported_layers = self.plugin.query_network(network=self.network,device_name=self.device)
         unsupported_layers = [l for l in self.network.layers.keys() if l not in supported_layers]
-        if len(unsupported_layers)!=0 and self.device=='CPU':
+        if len(unsupported_layers) != 0 and self.device == 'CPU':
             print("Unsupported layers found:{}".format(unsupported_layers))
             if not self.extensions == None:
                 print("Adding cpu_extension")
-                self.plugin.add_extension(self.extensions,self.device)
+                self.plugin.add_extension(self.extensions, self.device)
                 supported_layers = self.plugin.query_network(network=self.network, device_name=self.device)
                 unsupported_layers = [l for l in self.network.layers.keys() if l not in supported_layers]
                 if len(unsupported_layers)!=0:
@@ -56,8 +54,7 @@ class Model_Head_Pose_Estimation:
                 print("Provide the path of cpu extension")
                 exit(1)
 
-        self.exec_net = self.plugin.load_network(network=self.network, device_name=self.device, num_requests=1)
-        
+        self.exec_net = self.plugin.load_network(network=self.network,device_name=self.device,num_requests=1)
         self.input_name = next(iter(self.network.inputs))
         self.input_shape = self.network.inputs[self.input_name].shape
         self.output_name = next(iter(self.network.outputs))
@@ -75,16 +72,16 @@ class Model_Head_Pose_Estimation:
 
     def check_model(self):
         pass
-
+        
     def preprocess_input(self, image):
         '''
         Before feeding the data into the model for inference,
         you might have to preprocess it. This function is where you can do that.
         '''
-        image_resized = cv2.resize(image, (self.input_shape[3], self.input_shape[2]))
-        img_processed = np.transpose(np.expand_dims(image_resized, axis=0), (0,3,1,2))
+        img_resized = cv2.resize(image, (self.input_shape[3], self.input_shape[2]))
+        img_processed = np.transpose(np.expand_dims(img_resized, axis=0), (0,3,1,2))
         return img_processed
-
+        
     def preprocess_output(self, outputs):
         '''
         Before feeding the output of this model to the next model,
